@@ -1,4 +1,5 @@
 // src/App.js
+import axios from 'axios';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 import './App.css';
@@ -32,6 +33,16 @@ function App() {
     localStorage.removeItem('authToken');
     setIsAuthenticated(false);
   }
+
+  const fetchBooks = async () => {
+    try {
+      const response = await axios.get('http://localhost:5266/api/Libros');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching books:', error);
+      return [];
+    }
+  };
 
   return (
     <>

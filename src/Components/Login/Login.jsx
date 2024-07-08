@@ -64,7 +64,7 @@ function Login({ onLogin, baseMail, baseUserName }) {
               />
             </div>
             <button className={styles.button} type="submit">Login</button>
-            <p className={styles.signupLink}>¿No tienes un cuenta? <Link to="/signup">Regístrate</Link>.</p>
+            <p className={styles.signupLink}>¿No tienes una cuenta? <Link to="/signup">Regístrate</Link>.</p>
           </form>
         </div>
       </div>
