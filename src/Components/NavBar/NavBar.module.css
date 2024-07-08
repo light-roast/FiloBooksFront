@@ -1,0 +1,57 @@
+/* NavBar.module.css */
+
+.nav {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: fit-content;
+    max-width: 1000px;
+  }
+  
+  .nav h1 {
+    font-size: 2.5rem;
+  }
+  
+  .nav p {
+    color: var(--textColor);
+  }
+  
+  .nav button {
+    background-color: #94323a;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .nav button:hover {
+    background-color: #501b1f;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: var(--textColor);
+  }
+  
+  .nav button:hover {
+    background-color: #501b1f;
+  }
+  
+  .nav .user {
+    cursor: pointer;
+  }
+  
+
+  @media (max-width: 700px) {
+    .nav p {
+      display: none; /* Hide the <p> tag on narrow screens */
+    }
+  }

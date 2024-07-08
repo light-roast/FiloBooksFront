@@ -1,19 +1,20 @@
 // src/App.js
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 import './App.css';
 // import Home from './Home';
 // import Contact from './Contact';
 // import Projects from './Projects';
 import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
-// import NavBar from './NavBar';
+import NavBar from './Components/NavBar/NavBar';
 // import Footer from './Footer';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+
 
   const baseUserName = (username) => {
     setUserName(username);
@@ -27,12 +28,17 @@ function App() {
     setIsAuthenticated(isAuth);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setIsAuthenticated(false);
+  }
+
   return (
     <>
       <Router>
         {isAuthenticated ? (
           <>
-            {/* <NavBar /> */}
+            <NavBar user={userName} email={email} logout={handleLogout}/>
             <Routes>
               {/* <Route path="/" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
