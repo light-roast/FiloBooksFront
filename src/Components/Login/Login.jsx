@@ -3,7 +3,7 @@ import styles from './Login.module.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line react/prop-types
-function Login({ onLogin }) {
+function Login({ onLogin, baseMail, baseUserName }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -18,12 +18,20 @@ function Login({ onLogin }) {
           if (response.data.token) {
             // Save the token to LocalStorage
             localStorage.setItem('authToken', response.data.token);
+            baseMail(response.data.email);
+            baseUserName(response.data.displayName);
             onLogin(true);
           } else {
             setError('Login failed');
           }
         } catch (error) {
-          setError('Login failed: ' + error.message);
+            if (error.code == "ERR_BAD_REQUEST") 
+            {
+                setError("Falló el login: Usuario no registrado o email o contraseña incorrectos.")
+            } else {
+                setError('Login failed: ' + error.message);
+            }
+          
         }
       };
   

@@ -12,6 +12,16 @@ import SignUp from './Components/SignUp/SignUp';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const baseUserName = (username) => {
+    setUserName(username);
+  }
+
+  const baseMail = (email) => {
+    setEmail(email);
+  }
 
   const handleLogin = (isAuth) => {
     setIsAuthenticated(isAuth);
@@ -33,8 +43,8 @@ function App() {
           </>
         ) : (
           <Routes>
-            <Route path="/login" element={<Login onLogin={handleLogin} />} />
-            <Route path="/signup" element={<SignUp onLogin={handleLogin} />} />
+            <Route path="/login" element={<Login onLogin={handleLogin} baseUserName={baseUserName} baseMail={baseMail} />} />
+            <Route path="/signup" element={<SignUp onLogin={handleLogin} baseUserName={setUserName} baseMail={setEmail} />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         )}

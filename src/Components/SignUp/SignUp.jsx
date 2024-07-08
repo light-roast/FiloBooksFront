@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
-function SignUp({ onLogin }) {
+function SignUp({ onLogin, baseMail, baseUserName  }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
@@ -21,6 +21,8 @@ function SignUp({ onLogin }) {
             if (response.data.token) {
                 // Save the token to LocalStorage
                 localStorage.setItem('authToken', response.data.token);
+                baseMail(response.data.user.correoElectronico);
+                baseUserName(response.data.user.username);
                 onLogin(true);
             } else {
                 setError('Sign up failed');
