@@ -1,0 +1,23 @@
+#mainSection {
+    display: flex;
+    margin: 4rem auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-between;
+    width: 100%;
+    
+    }
+
+.cards {
+    flex-basis: 15%;
+    height: 100%;
+    flex-shrink: 0;
+    min-width: 25rem;
+    max-width: 25rem;
+    margin-bottom: 5rem;
+    border-radius: 2%;
+}
+
+section {
+    max-width: 1200px;
+}

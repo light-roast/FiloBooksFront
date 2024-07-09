@@ -1,0 +1,139 @@
+
+img {
+    height: 100%;
+    width: 100%;   
+    }
+
+.image-container {
+        margin: 0 auto;
+        width: auto; 
+        height: 350px;
+        overflow: hidden; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+#info {
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(2,1fr);
+    font-size: 1.1rem;
+
+}
+
+#one {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border-top: black solid 1px;
+    border-bottom: black solid 1px;
+    border-right: black solid 1px;
+    padding: .2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #007BFF;
+}
+
+#two {
+    grid-column: 1/4;
+    grid-row: 2/3;
+    padding: .2rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#four {
+    grid-column: 2/4;
+    grid-row: 1/2;
+    border-top: black solid 1px;
+    align-content:center;
+    text-align: center;
+    border-bottom: black solid 1px;
+    color:brown;
+    }
+
+#four i {
+    height: auto;
+}
+
+
+.cards {
+    margin: 1.9rem;
+    border: var(--mainColor) solid 2px;
+ 
+}
+
+#name {
+    margin-top: .9rem;
+    margin-bottom: .5rem;
+    text-align: left;
+    font-size: 1.7rem;
+}
+
+
+h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center; 
+}
+
+
+.category {
+    color: var(--mainColor);
+}
+
+.category:hover {
+    background-color: var(--mainColorL);
+    color: white;
+}
+
+@keyframes cards {
+    from {
+        opacity: 0;
+        transform: translate(0, 100px);
+    }
+    50% {
+        opacity: 0.1;
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+.cards {
+    animation: cards .3s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+.cards {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 3px 4px 4px black;
+  }
+  
+  .cards:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Additional styling for the hover effect (optional) */
+  .cards:hover .project-overlay {
+    opacity: 1;
+  }
+  
+  .cards .project-overlay {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+
