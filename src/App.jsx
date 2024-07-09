@@ -6,6 +6,7 @@ import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
 import NavBar from './Components/NavBar/NavBar';
 import Libros from './Components/Libros/Libros';
+import Footer from './Components/Footer/Footer';
 import { checkAuthTokenValidity } from './utils/firebaseAuth';
 
 function App() {
@@ -86,7 +87,7 @@ function App() {
             <Route path="/projects" element={<Projects />} /> */}
             <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
-          {/* <Footer /> */}
+          <Footer />
         </>
       ) : (
         <Routes>
