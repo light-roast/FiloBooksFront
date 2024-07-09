@@ -6,7 +6,7 @@ const NavBar = ({ user, email, logout }) => {
   return (
     <nav className={styles.nav}>
       <h1><Link to="/">FiloBooks</Link></h1>
-      <p>{user} ({email})</p>
+      <p><span>&#x1F7E2;</span>{user} ({email})</p>
       <button onClick={logout}>Logout</button>
     </nav>
   );

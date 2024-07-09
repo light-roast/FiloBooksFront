@@ -1,7 +1,6 @@
-// src/App.js
 import axios from 'axios';
-import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
@@ -15,21 +14,43 @@ function App() {
   const [email, setEmail] = useState("");
   const [libros, setLibros] = useState([]);
 
+  useEffect(() => {
+    // Check if user is already authenticated on app load
+    const authToken = localStorage.getItem('authToken');
+    if (authToken) {
+      setIsAuthenticated(true);
+      // Retrieve username and email from localStorage
+      const storedUserName = localStorage.getItem('userName');
+      const storedEmail = localStorage.getItem('email');
+      setUserName(storedUserName);
+      setEmail(storedEmail);
+      // Fetch user data or perform necessary actions here if needed
+    }
+  }, []);
+
   const baseUserName = (username) => {
     setUserName(username);
+    localStorage.setItem('userName', username); // Store in localStorage
   }
 
   const baseMail = (email) => {
     setEmail(email);
+    localStorage.setItem('email', email); // Store in localStorage
   }
 
   const handleLogin = (isAuth) => {
     setIsAuthenticated(isAuth);
+    // Optionally fetch user data or perform necessary actions after login
   };
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userName'); // Remove from localStorage
+    localStorage.removeItem('email'); // Remove from localStorage
     setIsAuthenticated(false);
+    setUserName(""); // Clear username state
+    setEmail(""); // Clear email state
+    setLibros([]); // Clear any sensitive data upon logout
   }
 
   const fetchLibros = async () => {
@@ -53,29 +74,28 @@ function App() {
   };
 
   return (
-    <>
-      <Router>
-        {isAuthenticated ? (
-          <>
-            <NavBar user={userName} email={email} logout={handleLogout}/>
-            <Routes>
-              <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros}/>} />
-              {/* <Route path="/" element={<Home />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/projects" element={<Projects />} /> */}
-              <Route path="*" element={<Navigate to="/libros" />} />
-            </Routes>
-            {/* <Footer /> */}
-          </>
-        ) : (
+    <Router>
+      {isAuthenticated ? (
+        <>
+          <NavBar user={userName} email={email} logout={handleLogout} />
           <Routes>
-            <Route path="/login" element={<Login onLogin={handleLogin} baseUserName={baseUserName} baseMail={baseMail} />} />
-            <Route path="/signup" element={<SignUp onLogin={handleLogin} baseUserName={setUserName} baseMail={setEmail} />} />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros} />} />
+            {/* Other authenticated routes */}
+            {/* <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/projects" element={<Projects />} /> */}
+            <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
-        )}
-      </Router>
-    </>
+          {/* <Footer /> */}
+        </>
+      ) : (
+        <Routes>
+          <Route path="/login" element={<Login onLogin={handleLogin} baseUserName={baseUserName} baseMail={baseMail} />} />
+          <Route path="/signup" element={<SignUp onLogin={handleLogin} baseUserName={setUserName} baseMail={setEmail} />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      )}
+    </Router>
   );
 }
 

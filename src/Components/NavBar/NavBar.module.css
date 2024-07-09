@@ -1,17 +1,20 @@
 /* NavBar.module.css */
 
 .nav {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: fit-content;
-    max-width: 1000px;
+    border-bottom: solid black 1px;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   
   .nav h1 {
@@ -48,10 +51,14 @@
   .nav .user {
     cursor: pointer;
   }
-  
+
 
   @media (max-width: 700px) {
     .nav p {
       display: none; /* Hide the <p> tag on narrow screens */
+    }
+
+    .nav p span {
+      display: block;
     }
   }

@@ -13,7 +13,7 @@ function Libros({ libros, fetchLibros }) {
     return (
         <section id="mainSection">
             {libros.map((libro) => (
-                <LibroCard key={libro.id} libro={libro} />
+                <LibroCard key={libro.libroId} libro={libro} />
             ))}
         </section>
     );
