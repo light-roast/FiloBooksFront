@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
 import './ResenaCard.css';
 
-function ResenaCard({ resena, user }) {
+function ResenaCard({ resena, user, deleteResena, setNuevaRes }) {
     const firebaseUserId = localStorage.getItem('firebaseId');
+
+    const handleDelete = () => {
+        deleteResena(resena.resenaId);
+        setNuevaRes(prev => !prev);
+    }
     if(resena.usuario.username === user && firebaseUserId === resena.usuarioId){
         return (
             <div className="resena-card">
@@ -12,7 +17,7 @@ function ResenaCard({ resena, user }) {
               </div>      
               <p id="calificacion">Calificación: {resena.calificacion}</p>
               <div id="botones">
-                <button className="delete">Eliminar</button>
+                <button className="delete" onClick={handleDelete}>Eliminar</button>
                 <button className="edit">Editar</button>
               </div>                
             </div>

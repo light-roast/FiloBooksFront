@@ -144,6 +144,53 @@ function App() {
     }
   };
 
+  const deleteResena = async (resenaId) => {
+    // Check token validity
+    const isValid = checkAuthTokenValidity();
+    if (!isValid) {
+      console.log("Token is invalid. Redirecting to login...");
+      setIsAuthenticated(false);
+      setLibros([]);
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userName'); 
+      localStorage.removeItem('email'); 
+      localStorage.removeItem('firebaseId');
+      return;
+    }
+  
+    const token = localStorage.getItem('authToken');
+    
+    if (!token) {
+      console.error('No token found. Cannot delete review.');
+      return;
+    }
+  
+    try {
+      // Make DELETE request to remove the review
+      const response = await axios.delete(`http://localhost:5266/api/Resenas/${resenaId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      if (response.status === 204) {
+        console.log('Review deleted successfully');        
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 403) {
+          console.error('You can only delete your own reviews.');
+        } else if (error.response.status === 404) {
+          console.error('Review not found.');
+        } else {
+          console.error('Error deleting review:', error.response.data);
+        }
+      } else {
+        console.error('Error deleting review:', error);
+      }
+    }
+  };
+
   return (
     <Router>
       {isAuthenticated ? (
@@ -151,7 +198,7 @@ function App() {
           <NavBar user={userName} email={email} logout={handleLogout} />
           <Routes>
             <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros} />} />
-            <Route path="/detalles/:libroId" element={<Detalles resenas={resenas} fetchResenas={fetchResenas} libros={libros} addResena={addResena} user={userName} email={email}/>} />
+            <Route path="/detalles/:libroId" element={<Detalles resenas={resenas} fetchResenas={fetchResenas} libros={libros} addResena={addResena} user={userName} email={email} deleteResena={deleteResena}/>} />
             <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
           <Footer />

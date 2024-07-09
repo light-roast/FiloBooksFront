@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import './Detalles.css';
 import Resenas from '../Resena/Resena';
 
-function Detalles({ libros, addResena, resenas, fetchResenas, user, email }) {
+function Detalles({ libros, addResena, resenas, fetchResenas, user, email, deleteResena }) {
   const [nuevaRes, setNuevaRes] = useState(false);
   const { libroId } = useParams();
   const libro = libros.find((lib) => lib.libroId === parseInt(libroId, 10));
@@ -42,6 +42,7 @@ function Detalles({ libros, addResena, resenas, fetchResenas, user, email }) {
           email={email} 
           setNuevaRes={setNuevaRes} 
           nuevaRes={nuevaRes}
+          deleteResena={deleteResena}
         />
         </div>
     </div>

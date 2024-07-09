@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './Resena.css';
 import ResenaCard from '../ResenaCard/ResenaCard';
 
-function Resenas({ libroId, resenas, addResena, libro, user, email, setNuevaRes }) {
+function Resenas({ libroId, resenas, addResena, libro, user, email, setNuevaRes, deleteResena }) {
   const [texto, setTexto] = useState('');
   const [calificacion, setCalificacion] = useState(0);
   const [exceeded, setExceeded] = useState(false);
@@ -59,7 +59,7 @@ function Resenas({ libroId, resenas, addResena, libro, user, email, setNuevaRes 
         </div>
       ) : (
         resenas.map((resena) => (
-          <ResenaCard resena={resena} key={resena.resenaId} user={user} email={email} />
+          <ResenaCard resena={resena} key={resena.resenaId} user={user} email={email} deleteResena={deleteResena} setNuevaRes={setNuevaRes}/>
         ))
       )}
       {puedeResenar ? (
