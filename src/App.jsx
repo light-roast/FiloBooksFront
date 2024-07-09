@@ -72,7 +72,7 @@ function App() {
     }
 
     try {
-      const response = await axios.get('http://localhost:5266/api/Libros');
+      const response = await axios.get('https://filobooksapi.azurewebsites.net/api/Libros');
       setLibros(response.data); // Store the fetched books in state
       console.log("Books fetched successfully:", response.data);
     } catch (error) {
@@ -104,7 +104,7 @@ function App() {
   
     try {
       // Make POST request to add review
-      const response = await axios.post('http://localhost:5266/api/Resenas', reseña, {
+      const response = await axios.post('https://filobooksapi.azurewebsites.net/api/Resenas', reseña, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -133,7 +133,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5266/api/Resenas/libro/${libroId}`);
+      const response = await fetch(`https://filobooksapi.azurewebsites.net/api/Resenas/libro/${libroId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch reseñas');
       }
@@ -167,7 +167,7 @@ function App() {
   
     try {
       // Make DELETE request to remove the review
-      const response = await axios.delete(`http://localhost:5266/api/Resenas/${resenaId}`, {
+      const response = await axios.delete(`https://filobooksapi.azurewebsites.net/Resenas/${resenaId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
