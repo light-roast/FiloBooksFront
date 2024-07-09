@@ -81,10 +81,7 @@ function App() {
           <NavBar user={userName} email={email} logout={handleLogout} />
           <Routes>
             <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros} />} />
-            {/* Other authenticated routes */}
-            {/* <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/projects" element={<Projects />} /> */}
+
             <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
           <Footer />
@@ -92,7 +89,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/login" element={<Login onLogin={handleLogin} baseUserName={baseUserName} baseMail={baseMail} />} />
-          <Route path="/signup" element={<SignUp onLogin={handleLogin} baseUserName={setUserName} baseMail={setEmail} />} />
+          <Route path="/signup" element={<SignUp onLogin={handleLogin} baseUserName={setUserName} baseMail={baseMail} />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       )}
