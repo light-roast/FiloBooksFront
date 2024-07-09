@@ -15,6 +15,7 @@ function App() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [libros, setLibros] = useState([]);
+  const [resenas, setResenas] = useState([]);
 
   useEffect(() => {
     // Check if user is already authenticated on app load
@@ -109,6 +110,19 @@ function App() {
     }
   };
 
+  const fetchResenas = async (libroId) => {
+    try {
+      const response = await fetch(`http://localhost:5266/api/Resenas/libro/${libroId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch reseñas');
+      }
+      const data = await response.json();
+      setResenas(data);
+    } catch (error) {
+      console.error('Error fetching reseñas:', error);
+    }
+  };
+
   return (
     <Router>
       {isAuthenticated ? (
@@ -116,7 +130,7 @@ function App() {
           <NavBar user={userName} email={email} logout={handleLogout} />
           <Routes>
             <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros} />} />
-            <Route path="/detalles/:libroId" element={<Detalles libros={libros} addResena={addResena}/>} />
+            <Route path="/detalles/:libroId" element={<Detalles resenas={resenas} fetchResenas={fetchResenas} libros={libros} addResena={addResena}/>} />
             <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
           <Footer />

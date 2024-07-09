@@ -42,8 +42,8 @@ function Resenas({ libroId, resenas, addResena, libro }) {
       ) : (
         resenas.map((resena, index) => (
           <div key={index} className="resena">
-            <h3>{resena.nombre}</h3>
-            <p>{resena.texto}</p>
+            <h3>{resena.usuario.username}</h3>
+            <p>{resena.comentario}</p>
             <p>Calificación: {resena.calificacion}</p> {/* Mostrar la calificación */}
           </div>
         ))
