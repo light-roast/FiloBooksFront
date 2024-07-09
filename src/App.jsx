@@ -75,6 +75,40 @@ function App() {
     }
   };
 
+  const addResena = async (libroId, reseña) => {
+    const isValid = checkAuthTokenValidity();
+    if (!isValid) {
+      console.log("Token is invalid. Redirecting to login...");
+      setIsAuthenticated(false);
+      setLibros([]);
+      return;
+    }
+
+    const token = localStorage.getItem('authToken'); 
+    if (!token) {
+      console.error('No token found. Cannot add review.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:5266/api/Resenas', reseña, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const newReseña = response.data;
+      setLibros((prevLibros) =>
+        prevLibros.map((libro) =>
+          libro.libroId === libroId
+            ? { ...libro, reseñas: [...libro.reseñas, newReseña] }
+            : libro
+        )
+      );
+    } catch (error) {
+      console.error('Error adding review:', error);
+    }
+  };
+
   return (
     <Router>
       {isAuthenticated ? (
@@ -82,7 +116,7 @@ function App() {
           <NavBar user={userName} email={email} logout={handleLogout} />
           <Routes>
             <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros} />} />
-            <Route path="/detalles/:libroId" element={<Detalles libros={libros} />} />
+            <Route path="/detalles/:libroId" element={<Detalles libros={libros} addResena={addResena}/>} />
             <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
           <Footer />

@@ -1,0 +1,118 @@
+/* src/Components/Libros/Resena.css */
+.resenas {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .resenas h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .resenas p {
+    text-align: center;
+    font-size: 1em;
+    color: #666;
+  }
+  
+  .resena {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    margin-bottom: 15px;
+  }
+  
+  .resena:last-child {
+    border-bottom: none;
+  }
+  
+  .resena h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #444;
+  }
+  
+  .resena p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #666;
+    text-align: left;
+  }
+  
+  .resena-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .resena-form h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .resena-form textarea {
+    margin: 10px auto;
+    max-width: 90%;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 2rem;
+    color: #333;
+    resize: none;
+    field-sizing: content;
+  }
+
+
+  #warning {
+    color: red;
+  }
+
+  
+  .resena-form button {
+    width: 200px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .resena-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  @media (max-width: 700px) {
+    .resenas {
+      padding: 15px;
+    }
+  
+    .resena-form textarea {
+      font-size: 16px; /* Prevents zoom on mobile devices */
+    }
+  
+    .resena-form button {
+      width: 100%;
+    }
+  }
+  
+  
+  
+
+ 
+  
+  
+
+  
