@@ -7,58 +7,58 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-  }
-  
-  .resenas h2 {
+}
+
+.resenas h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
     color: #333;
     text-align: center;
-  }
-  
-  .resenas p {
+}
+
+.resenas p {
     text-align: center;
     font-size: 1em;
     color: #666;
-  }
-  
-  .resena {
+}
+
+.resena {
     border-bottom: 1px solid #ddd;
     padding: 15px 0;
     margin-bottom: 15px;
-  }
-  
-  .resena:last-child {
+}
+
+.resena:last-child {
     border-bottom: none;
-  }
-  
-  .resena h3 {
+}
+
+.resena h3 {
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #444;
-  }
-  
-  .resena p {
+}
+
+.resena p {
     font-size: 1em;
     line-height: 1.6;
     color: #666;
     text-align: left;
-  }
-  
-  .resena-form {
+}
+
+.resena-form {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .resena-form h2 {
+}
+
+.resena-form h2 {
     font-size: 1.5em;
     margin-bottom: 15px;
     color: #333;
-  }
-  
-  .resena-form textarea {
+}
+
+.resena-form textarea {
     margin: 10px auto;
     max-width: 90%;
     width: 100%;
@@ -69,15 +69,25 @@
     color: #333;
     resize: none;
     field-sizing: content;
-  }
+}
 
+.resena-form select {
+    margin: 10px auto;
+    max-width: 90%;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem; /* Reducido para igualar el tamaño con otros elementos del formulario */
+    color: #333;
+    cursor: pointer;
+}
 
-  #warning {
+#warning {
     color: red;
-  }
+}
 
-  
-  .resena-form button {
+.resena-form button {
     width: 200px;
     padding: 10px;
     background-color: #007bff;
@@ -87,32 +97,26 @@
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .resena-form button:hover {
+}
+
+.resena-form button:hover {
     background-color: #0056b3;
-  }
-  
-  
-  @media (max-width: 700px) {
+}
+
+@media (max-width: 700px) {
     .resenas {
-      padding: 15px;
+        padding: 15px;
     }
-  
+
     .resena-form textarea {
-      font-size: 16px; /* Prevents zoom on mobile devices */
+        font-size: 16px; /* Prevents zoom on mobile devices */
     }
-  
+
+    .resena-form select {
+        font-size: 16px; /* Tamaño de fuente ajustado para dispositivos móviles */
+    }
+
     .resena-form button {
-      width: 100%;
+        width: 100%;
     }
-  }
-  
-  
-  
-
- 
-  
-  
-
-  
+}

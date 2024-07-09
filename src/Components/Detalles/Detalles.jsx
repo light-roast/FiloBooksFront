@@ -26,7 +26,7 @@ function Detalles({ libros, addResena }) {
         </div>
 
         <div className="reseñas">
-            <Resenas libroId={libro.libroId} resenas={libro.reseñas} addResena={addResena} />
+            <Resenas libroId={libro.libroId} libro={libro} resenas={libro.reseñas} addResena={addResena} />
         </div>
     </div>
   );

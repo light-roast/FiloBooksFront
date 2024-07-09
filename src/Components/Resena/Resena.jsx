@@ -2,42 +2,49 @@
 import { useState } from 'react';
 import './Resena.css';
 
-function Resenas({ libroId, resenas, addResena }) {
+function Resenas({ libroId, resenas, addResena, libro }) {
   const [nombre, setNombre] = useState('');
   const [texto, setTexto] = useState('');
+  const [calificacion, setCalificacion] = useState(0); // Estado para la calificación
   const [exceeded, setExceeded] = useState(false);
 
   const handleTextChange = (e) => {
     const maxLength = 350;
     const currentLength = e.target.value.length;
     setTexto(e.target.value);
-    if (currentLength === maxLength) {
+    if (currentLength > maxLength) {
       setExceeded(true);
     } else {
       setExceeded(false);
     }
   };
 
+  const handleCalificacionChange = (e) => {
+    setCalificacion(parseInt(e.target.value)); 
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addResena(libroId, { nombre, texto });
+    addResena(libroId, { nombre, texto, calificacion }); 
     setNombre('');
     setTexto('');
+    setCalificacion(0); 
   };
 
   return (
     <div className="resenas">
-      <h2><u>Reseñas</u></h2>
+      <h2><u>Reseñas - {libro.titulo}</u></h2>
       {resenas.length === 0 ? (
         <div>
             <p>No hay reseñas aún.</p>
-            <p>¡Se el primero en añadir una!</p>
+            <p>¡Sé el primero en añadir una!</p>
         </div>
       ) : (
         resenas.map((resena, index) => (
           <div key={index} className="resena">
             <h3>{resena.nombre}</h3>
             <p>{resena.texto}</p>
+            <p>Calificación: {resena.calificacion}</p> {/* Mostrar la calificación */}
           </div>
         ))
       )}
@@ -50,6 +57,16 @@ function Resenas({ libroId, resenas, addResena }) {
           onChange={handleTextChange}
           maxLength="350"
         ></textarea>
+        
+          <select value={calificacion} onChange={handleCalificacionChange}>
+            <option value="0">Selecciona una calificación para el libro.</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+       
         <button type="submit">Enviar Reseña</button>
       </form>
     </div>
