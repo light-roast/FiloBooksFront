@@ -5,7 +5,7 @@ import './Detalles.css';
 import Resenas from '../Resena/Resena';
 
 // eslint-disable-next-line react/prop-types
-function Detalles({ libros, addResena, resenas, fetchResenas }) {
+function Detalles({ libros, addResena, resenas, fetchResenas, user, email }) {
   const { libroId } = useParams();
   const libro = libros.find((lib) => lib.libroId === parseInt(libroId, 10));
 
@@ -33,7 +33,7 @@ function Detalles({ libros, addResena, resenas, fetchResenas }) {
         </div>
 
         <div className="reseñas">
-            <Resenas libroId={libro.libroId} resenas={resenas} libro={libro} addResena={addResena} />
+            <Resenas libroId={libro.libroId} resenas={resenas} libro={libro} addResena={addResena} user={user} email={email}/>
         </div>
     </div>
   );

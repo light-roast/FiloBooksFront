@@ -130,7 +130,7 @@ function App() {
           <NavBar user={userName} email={email} logout={handleLogout} />
           <Routes>
             <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros} />} />
-            <Route path="/detalles/:libroId" element={<Detalles resenas={resenas} fetchResenas={fetchResenas} libros={libros} addResena={addResena}/>} />
+            <Route path="/detalles/:libroId" element={<Detalles resenas={resenas} fetchResenas={fetchResenas} libros={libros} addResena={addResena} user={userName} email={email}/>} />
             <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
           <Footer />

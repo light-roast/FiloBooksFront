@@ -18,6 +18,8 @@ function Login({ onLogin, baseMail, baseUserName }) {
           if (response.data.token) {
             // Save the token to LocalStorage
             localStorage.setItem('authToken', response.data.token);
+            localStorage.setItem('firebaseId', response.data.localId);
+            
             baseMail(response.data.email);
             baseUserName(response.data.displayName);
             onLogin(true);

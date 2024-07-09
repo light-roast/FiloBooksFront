@@ -21,6 +21,7 @@ function SignUp({ onLogin, baseMail, baseUserName  }) {
             if (response.data.token) {
                 // Save the token to LocalStorage
                 localStorage.setItem('authToken', response.data.token);
+                localStorage.setItem('firebaseId', response.data.user.firebaseUserId);
                 baseMail(response.data.user.correoElectronico);
                 baseUserName(response.data.user.username);
                 onLogin(true);

@@ -1,0 +1,56 @@
+.resena-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .resena-card h3 {
+    margin-top: 0;
+    text-align: left;
+  }
+  
+  #comentario {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    text-align: justify;
+  }
+
+  #borde {
+    border: 1px solid black;
+  }
+  
+  #calificacion {
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .resena-card button {
+    margin-right: 10px; /* Add some spacing between buttons */
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .resena-card button.delete {
+    background-color: #ff6347; /* Red color for delete button */
+    display: block;
+
+  }
+  
+  .resena-card button.edit {
+    background-color: #4682b4; /* Blue color for edit button */
+    display: block;
+  
+  }
+
+  #botones {
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  

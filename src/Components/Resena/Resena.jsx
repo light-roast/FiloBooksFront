@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState} from 'react';
 import './Resena.css';
+import ResenaCard from '../ResenaCard/ResenaCard';
 
-function Resenas({ libroId, resenas, addResena, libro }) {
+
+function Resenas({ libroId, resenas, addResena, libro, user, email }) {
   const [nombre, setNombre] = useState('');
   const [texto, setTexto] = useState('');
   const [calificacion, setCalificacion] = useState(0); // Estado para la calificación
   const [exceeded, setExceeded] = useState(false);
+
 
   const handleTextChange = (e) => {
     const maxLength = 350;
@@ -40,12 +43,9 @@ function Resenas({ libroId, resenas, addResena, libro }) {
             <p>¡Sé el primero en añadir una!</p>
         </div>
       ) : (
-        resenas.map((resena, index) => (
-          <div key={index} className="resena">
-            <h3>{resena.usuario.username}</h3>
-            <p>{resena.comentario}</p>
-            <p>Calificación: {resena.calificacion}</p> {/* Mostrar la calificación */}
-          </div>
+        resenas.map((resena) => (
+          
+            <ResenaCard resena={resena} key={resena.resenaId} user={user} email={email}/>
         ))
       )}
       <form onSubmit={handleSubmit} className="resena-form">
