@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Detalles.css';
 import Resenas from '../Resena/Resena';
 
-// eslint-disable-next-line react/prop-types
 function Detalles({ libros, addResena, resenas, fetchResenas, user, email }) {
+  const [nuevaRes, setNuevaRes] = useState(false);
   const { libroId } = useParams();
   const libro = libros.find((lib) => lib.libroId === parseInt(libroId, 10));
 
@@ -13,7 +13,7 @@ function Detalles({ libros, addResena, resenas, fetchResenas, user, email }) {
     if (libro) {
       fetchResenas(libro.libroId);
     }
-  }, [libro]);
+  }, [libro, nuevaRes]);
 
   if (!libro) {
     return <div>Libro no encontrado</div>;
@@ -33,7 +33,16 @@ function Detalles({ libros, addResena, resenas, fetchResenas, user, email }) {
         </div>
 
         <div className="reseñas">
-            <Resenas libroId={libro.libroId} resenas={resenas} libro={libro} addResena={addResena} user={user} email={email}/>
+        <Resenas 
+          libroId={libro.libroId} 
+          resenas={resenas} 
+          libro={libro} 
+          addResena={addResena} 
+          user={user} 
+          email={email} 
+          setNuevaRes={setNuevaRes} 
+          nuevaRes={nuevaRes}
+        />
         </div>
     </div>
   );

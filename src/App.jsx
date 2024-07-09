@@ -48,8 +48,9 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    localStorage.removeItem('userName'); // Remove from localStorage
-    localStorage.removeItem('email'); // Remove from localStorage
+    localStorage.removeItem('userName'); 
+    localStorage.removeItem('email'); 
+    localStorage.removeItem('firebaseId');
     setIsAuthenticated(false);
     setUserName(""); // Clear username state
     setEmail(""); // Clear email state
@@ -62,7 +63,11 @@ function App() {
     if (!isValid) {
       console.log("Token is invalid. Redirecting to login...");
       setIsAuthenticated(false);
-      setLibros([]); // Clear the books if the token is invalid
+      setLibros([]);
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userName'); 
+      localStorage.removeItem('email'); 
+      localStorage.removeItem('firebaseId');
       return;
     }
 
@@ -77,40 +82,56 @@ function App() {
   };
 
   const addResena = async (libroId, reseña) => {
+    // Check token validity
     const isValid = checkAuthTokenValidity();
     if (!isValid) {
       console.log("Token is invalid. Redirecting to login...");
       setIsAuthenticated(false);
       setLibros([]);
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userName'); 
+      localStorage.removeItem('email'); 
+      localStorage.removeItem('firebaseId');
       return;
     }
-
-    const token = localStorage.getItem('authToken'); 
+  
+    const token = localStorage.getItem('authToken');
+    
     if (!token) {
       console.error('No token found. Cannot add review.');
       return;
     }
-
+  
     try {
+      // Make POST request to add review
       const response = await axios.post('http://localhost:5266/api/Resenas', reseña, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
+  
       const newReseña = response.data;
-      setLibros((prevLibros) =>
-        prevLibros.map((libro) =>
-          libro.libroId === libroId
-            ? { ...libro, reseñas: [...libro.reseñas, newReseña] }
-            : libro
-        )
-      );
-    } catch (error) {
-      console.error('Error adding review:', error);
-    }
-  };
+
+    console.log('Review added successfully:', newReseña);
+  } catch (error) {
+    console.error('Error adding review:', error);
+    // Handle specific error scenarios (network error, server error, etc.)
+  }
+};
 
   const fetchResenas = async (libroId) => {
+    const isValid = checkAuthTokenValidity();
+    if (!isValid) {
+      console.log("Token is invalid. Redirecting to login...");
+      setIsAuthenticated(false);
+      setLibros([]);
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userName'); 
+      localStorage.removeItem('email'); 
+      localStorage.removeItem('firebaseId');
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:5266/api/Resenas/libro/${libroId}`);
       if (!response.ok) {
