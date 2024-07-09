@@ -7,6 +7,7 @@ import SignUp from './Components/SignUp/SignUp';
 import NavBar from './Components/NavBar/NavBar';
 import Libros from './Components/Libros/Libros';
 import Footer from './Components/Footer/Footer';
+import Detalles from './Components/Detalles/Detalles';
 import { checkAuthTokenValidity } from './utils/firebaseAuth';
 
 function App() {
@@ -81,7 +82,7 @@ function App() {
           <NavBar user={userName} email={email} logout={handleLogout} />
           <Routes>
             <Route path="/libros" element={<Libros fetchLibros={fetchLibros} libros={libros} />} />
-
+            <Route path="/detalles/:libroId" element={<Detalles libros={libros} />} />
             <Route path="*" element={<Navigate to="/libros" />} />
           </Routes>
           <Footer />
