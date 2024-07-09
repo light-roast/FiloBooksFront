@@ -174,7 +174,8 @@ function App() {
       });
   
       if (response.status === 204) {
-        console.log('Review deleted successfully');        
+        console.log('Review deleted successfully');   
+        setResenas(prevResenas => prevResenas.filter(resena => resena.resenaId !== resenaId));     
       }
     } catch (error) {
       if (error.response) {

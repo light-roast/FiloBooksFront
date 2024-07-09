@@ -18,7 +18,7 @@ function ResenaCard({ resena, user, deleteResena, setNuevaRes }) {
               <p id="calificacion">Calificación: {resena.calificacion}</p>
               <div id="botones">
                 <button className="delete" onClick={handleDelete}>Eliminar</button>
-                <button className="edit">Editar</button>
+                {/* <button className="edit">Editar</button> */}
               </div>                
             </div>
           );
