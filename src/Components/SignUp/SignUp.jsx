@@ -25,11 +25,11 @@ function SignUp({ onLogin, baseMail, baseUserName  }) {
                   });
                   if (response2.data.token) {
                     // Save the token to LocalStorage
-                    localStorage.setItem('authToken', response.data.token);
-                    localStorage.setItem('firebaseId', response.data.localId);
+                    localStorage.setItem('authToken', response2.data.token);
+                    localStorage.setItem('firebaseId', response2.data.localId);
                     
-                    baseMail(response.data.email);
-                    baseUserName(response.data.displayName);
+                    baseMail(response2.data.email);
+                    baseUserName(response2.data.displayName);
                     onLogin(true);}
             } else {
                 setError('Sign up failed');
