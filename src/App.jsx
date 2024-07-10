@@ -74,7 +74,7 @@ function App() {
     }
 
     try {
-      const response = await axios.get(`${apiLocal}api/Libros`);
+      const response = await axios.get(`${apiAzure}api/Libros`);
       setLibros(response.data); // Store the fetched books in state
       console.log("Books fetched successfully:", response.data);
     } catch (error) {
@@ -106,7 +106,7 @@ function App() {
   
     try {
       // Make POST request to add review
-      const response = await axios.post(`${apiLocal}api/Resenas`, reseña, {
+      const response = await axios.post(`${apiAzure}api/Resenas`, reseña, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -135,7 +135,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`${apiLocal}api/Resenas/libro/${libroId}`);
+      const response = await fetch(`${apiAzure}api/Resenas/libro/${libroId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch reseñas');
       }
@@ -169,7 +169,7 @@ function App() {
   
     try {
       // Make DELETE request to remove the review
-      const response = await axios.delete(`${apiLocal}api/Resenas/${resenaId}`, {
+      const response = await axios.delete(`${apiAzure}api/Resenas/${resenaId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

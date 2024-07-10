@@ -15,13 +15,13 @@ function SignUp({ onLogin, baseMail, baseUserName  }) {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${apiLocal}api/auth/signup`, {
+            const response = await axios.post(`${apiAzure}api/auth/signup`, {
                 email,
                 password,
                 displayName
             });
             if (response.data.token) {
-                const response2 = await axios.post(`${apiLocal}api/auth/login`, {
+                const response2 = await axios.post(`${apiAzure}api/auth/login`, {
                     email,
                     password
                   });
