@@ -25,13 +25,12 @@ img {
     grid-column: 1/2;
     grid-row: 1/2;
     border-top: black solid 1px;
-    border-bottom: black solid 1px;
-    border-right: black solid 1px;
+    
     padding: .2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #007BFF;
+    color: black;
 }
 
 #two {
@@ -50,8 +49,7 @@ img {
     border-top: black solid 1px;
     align-content:center;
     text-align: center;
-    border-bottom: black solid 1px;
-    color:brown;
+    color:gray;
     }
 
 #four i {
@@ -94,10 +92,6 @@ h3 {
     color: var(--mainColor);
 }
 
-.category:hover {
-    background-color: var(--mainColorL);
-    color: white;
-}
 
 @keyframes cards {
     from {
@@ -125,8 +119,7 @@ h3 {
   .cards:hover {
     transform: scale(1.05);
   }
-  
-  /* Additional styling for the hover effect (optional) */
+ 
   .cards:hover .project-overlay {
     opacity: 1;
   }
@@ -135,5 +128,24 @@ h3 {
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
   }
+
+  #añadir {
+    width: 12rem;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 1rem auto;
+}
+
+#añadir:hover {
+    background-color: #0056b3;
+}
   
+ 
+
 

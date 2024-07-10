@@ -17,23 +17,32 @@ function Libros({ libros, fetchLibros }) {
     setFilteredLibros(libros);
   }, [libros]);
 
+  
+  const normalizeString = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  };
+  
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(
     debounce((searchTerm) => {
       if (searchTerm === '') {
         setFilteredLibros(libros);
         return;
+      } else {
+        const normalizedTerm = normalizeString(searchTerm);
+        const filtered = libros.filter((libro) => {
+          const normalizedTitulo = normalizeString(libro.titulo);
+          const normalizedAutor = normalizeString(libro.autor);
+          const normalizedCategoria = normalizeString(libro.categoria.nombreCategoria);
+          
+          return (
+            normalizedTitulo.includes(normalizedTerm) ||
+            normalizedAutor.includes(normalizedTerm) ||
+            normalizedCategoria.includes(normalizedTerm)
+          );
+        });
+        setFilteredLibros(filtered);
       }
-      else {
-      const lowercasedTerm = searchTerm.toLowerCase();
-      const filtered = libros.filter((libro) => 
-        libro.titulo.toLowerCase().includes(lowercasedTerm) || 
-        libro.autor.toLowerCase().includes(lowercasedTerm) || 
-        libro.categoria.nombreCategoria.toLowerCase().includes(lowercasedTerm)
-      );
-      setFilteredLibros(filtered);
-    }
-      
     }, 500),
     [libros]
   );

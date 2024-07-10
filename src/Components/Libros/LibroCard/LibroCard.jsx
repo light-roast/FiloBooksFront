@@ -27,7 +27,7 @@ function LibroCard({ libro }) {
                     {libro.categoria.nombreCategoria}
                 </h4>
                 <h4 id="two">
-                    <a className="category" onClick={handleReviewClick}>Añadir reseña</a>
+                    <button id="añadir" className="category" onClick={handleReviewClick}>Añadir reseña</button>
                 </h4>
             </div>
         </div>

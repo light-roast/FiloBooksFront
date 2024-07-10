@@ -9,6 +9,7 @@ function Resenas({ libroId, resenas, addResena, libro, user, email, setNuevaRes,
   const [exceeded, setExceeded] = useState(false);
   const [puedeResenar, setPuedeResenar] = useState(false);
   const firebaseUserId = localStorage.getItem('firebaseId');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const handleResenaForm = () => {
@@ -35,7 +36,22 @@ function Resenas({ libroId, resenas, addResena, libro, user, email, setNuevaRes,
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
+    if (texto === '' && !calificacion) {
+      setError('El campo de texto no puede estar vacío y debe seleccionar una calificación.');
+      return;
+    } else if (texto === '') {
+      setError('El campo de texto no puede estar vacío.');
+      return;
+    } else if (calificacion == 0) {
+      setError('Debe seleccionar una calificación.');
+      return;
+    } else{
+      console.log('Se puede mandar el form');
+    }
+
+    setError('');
     
     await addResena(libroId, { 
       "usuarioFirebaseUserId": firebaseUserId,
@@ -80,6 +96,7 @@ function Resenas({ libroId, resenas, addResena, libro, user, email, setNuevaRes,
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit">Enviar Reseña</button>
         </form>
       ) : <h3>Ya añadiste tu reseña</h3>}

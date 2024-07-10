@@ -16,6 +16,8 @@ function App() {
   const [email, setEmail] = useState("");
   const [libros, setLibros] = useState([]);
   const [resenas, setResenas] = useState([]);
+  const apiLocal = "http://localhost:5266/";
+  const apiAzure = "https://filobooksapi.azurewebsites.net/";
 
   useEffect(() => {
     // Check if user is already authenticated on app load
@@ -72,7 +74,7 @@ function App() {
     }
 
     try {
-      const response = await axios.get('https://filobooksapi.azurewebsites.net/api/Libros');
+      const response = await axios.get(`${apiLocal}api/Libros`);
       setLibros(response.data); // Store the fetched books in state
       console.log("Books fetched successfully:", response.data);
     } catch (error) {
@@ -104,7 +106,7 @@ function App() {
   
     try {
       // Make POST request to add review
-      const response = await axios.post('https://filobooksapi.azurewebsites.net/api/Resenas', reseña, {
+      const response = await axios.post(`${apiLocal}api/Resenas`, reseña, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -133,7 +135,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`https://filobooksapi.azurewebsites.net/api/Resenas/libro/${libroId}`);
+      const response = await fetch(`${apiLocal}api/Resenas/libro/${libroId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch reseñas');
       }
@@ -167,7 +169,7 @@ function App() {
   
     try {
       // Make DELETE request to remove the review
-      const response = await axios.delete(`https://filobooksapi.azurewebsites.net/api/Resenas/${resenaId}`, {
+      const response = await axios.delete(`${apiLocal}api/Resenas/${resenaId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

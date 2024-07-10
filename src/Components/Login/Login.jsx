@@ -7,11 +7,13 @@ function Login({ onLogin, baseMail, baseUserName }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const apiLocal = "http://localhost:5266/";
+  const apiAzure = "https://filobooksapi.azurewebsites.net/";
   
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('https://filobooksapi.azurewebsites.net/api/auth/login', {
+          const response = await axios.post(`${apiLocal}api/auth/login`, {
             email,
             password
           });
