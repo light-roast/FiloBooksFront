@@ -167,7 +167,7 @@ function App() {
   
     try {
       // Make DELETE request to remove the review
-      const response = await axios.delete(`https://filobooksapi.azurewebsites.net/Resenas/${resenaId}`, {
+      const response = await axios.delete(`https://filobooksapi.azurewebsites.net/api/Resenas/${resenaId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
